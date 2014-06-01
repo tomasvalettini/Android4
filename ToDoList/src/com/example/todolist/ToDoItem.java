@@ -30,6 +30,7 @@ public class ToDoItem
 		created = _created;
 	}
 	
+	@SuppressLint("SimpleDateFormat")
 	@Override
 	public String toString()
 	{

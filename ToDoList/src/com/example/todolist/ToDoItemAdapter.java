@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ public class ToDoItemAdapter extends ArrayAdapter<ToDoItem>
 		this.resource = resource;
 	}
 	
+	@SuppressLint("SimpleDateFormat")
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
