@@ -6,12 +6,11 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 
 public class MainActivity extends FragmentActivity implements OnNewItemAddedListener
 {
-	private ArrayAdapter<String> aa;
-	private ArrayList<String> todoItems;
+	private ToDoItemAdapter aa;
+	private ArrayList<ToDoItem> todoItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -24,10 +23,10 @@ public class MainActivity extends FragmentActivity implements OnNewItemAddedList
         ToDoListFragment todoListFragment = (ToDoListFragment)fm.findFragmentById(R.id.TodoListFragment);
         
         // Create the array list of to do items
-        todoItems = new ArrayList<String>();
+        todoItems = new ArrayList<ToDoItem>();
         
         // Create the array adapter to bind the array to the listview
-        aa = new ArrayAdapter<String>(this, R.layout.todolist_item, todoItems);
+        aa = new ToDoItemAdapter(this, R.layout.todolist_item, todoItems);
         
         // Bind the array adapter to the listview.
         todoListFragment.setListAdapter(aa);
@@ -61,7 +60,8 @@ public class MainActivity extends FragmentActivity implements OnNewItemAddedList
 
     public void onNewItemAdded(String newItem)
     {
-    	todoItems.add(newItem);
+    	ToDoItem newToDoItem = new ToDoItem(newItem);
+    	todoItems.add(0, newToDoItem);
     	aa.notifyDataSetChanged();
     }
 }
